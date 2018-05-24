@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PEOPLE } from '../mock-people';
+import { PersonService } from '../person.service';
 import { Person } from '../Person';
 
 @Component({
@@ -8,10 +8,15 @@ import { Person } from '../Person';
   styleUrls: ['./people.component.css']
 })
 export class PeopleComponent implements OnInit {
-  people: Person[] = PEOPLE;
-  constructor() {
+  people: Person[];
+  constructor(private personService: PersonService) {
+  }
+  getPeople(): void {
+    this.personService.getPeople()
+      .subscribe(people => this.people = people);
   }
 
   ngOnInit() {
+    this.getPeople();
   }
 }

@@ -4,15 +4,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CatalystProblem.Models;
 
 namespace CatalystProblem.Controllers
 {
-    public class ValuesController : ApiController
+    public class PeopleController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public List<Person> Get()
         {
-            return new string[] { "value1", "value2" };
+            var dataContext = new CatalystProblemDataContext();
+            var people = dataContext.People.ToList();
+            return people;
         }
 
         // GET api/values/5

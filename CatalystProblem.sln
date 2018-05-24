@@ -3,30 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalystProblem.Api", "CatalystProblem.Api\CatalystProblem.Api.csproj", "{A2C242D5-13C8-4734-89C4-840F7033BAD7}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CatalystProblem.Client", "CatalystProblem.Client\", "{84D7AC28-DE73-46E5-A6D7-925179E8B15F}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_59532"
-		Debug.AspNetCompiler.PhysicalPath = "CatalystProblem.Client\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59532\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_59532"
-		Release.AspNetCompiler.PhysicalPath = "CatalystProblem.Client\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59532\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "59532"
-		SlnRelativePath = "CatalystProblem.Client\"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalystProblem", "CatalystProblem\CatalystProblem.csproj", "{D5FA801C-BBA6-4EDC-A4ED-81A4679969EF}"
 EndProject
 Global
@@ -35,14 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A2C242D5-13C8-4734-89C4-840F7033BAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2C242D5-13C8-4734-89C4-840F7033BAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2C242D5-13C8-4734-89C4-840F7033BAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2C242D5-13C8-4734-89C4-840F7033BAD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84D7AC28-DE73-46E5-A6D7-925179E8B15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84D7AC28-DE73-46E5-A6D7-925179E8B15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84D7AC28-DE73-46E5-A6D7-925179E8B15F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{84D7AC28-DE73-46E5-A6D7-925179E8B15F}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{D5FA801C-BBA6-4EDC-A4ED-81A4679969EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5FA801C-BBA6-4EDC-A4ED-81A4679969EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5FA801C-BBA6-4EDC-A4ED-81A4679969EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
