@@ -1,0 +1,27 @@
+<h2>Search Results</h2>
+<h4 *ngIf="people.length <= 0">
+  No one found with that name.
+</h4>
+
+<table class="table" *ngIf="people.length > 0">
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Age</th>
+      <th>Interests</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let person of people">
+      <td>
+        <img style="width:50px;" src="Content/images/{{person.avatarUrl}}" title="{{person.name}}'s avatar" />
+      </td>
+      <td>{{person.name}}</td>
+      <td>{{person.address}}</td>
+      <td>{{person.age}}</td>
+      <td>{{person.interests}}</td>
+    </tr>
+  </tbody>
+</table>
