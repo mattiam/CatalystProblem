@@ -1,9 +1,23 @@
-<h2>Search Results</h2>
-<h4 *ngIf="people.length <= 0">
+<h3>Search People</h3>
+
+<form>
+  <div class="form-group">
+    <label for="searchParam">Name</label>
+    <input type="text" class="form-control" id="searchParam"
+    [(ngModel)]="searchParam" name="searchParam"
+    #name="ngModel"
+    required />
+  </div>
+  <button type="submit" class="btn btn-success" (click)="getPeople()">
+    Search
+  </button>
+</form>
+
+<h4 *ngIf="people && people.length <= 0">
   No one found with that name.
 </h4>
 
-<table class="table" *ngIf="people.length > 0">
+<table class="table" *ngIf="people && people.length > 0">
   <thead>
     <tr>
       <th>Avatar</th>

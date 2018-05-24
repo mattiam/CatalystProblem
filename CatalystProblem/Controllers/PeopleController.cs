@@ -4,18 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CatalystProblem.Data;
 using CatalystProblem.Models;
 
 namespace CatalystProblem.Controllers
 {
     public class PeopleController : ApiController
     {
-        // GET api/values
-        public List<Person> Get()
+        private readonly ICatalystProblemRepository _repository;
+
+        public PeopleController(ICatalystProblemRepository repository)
         {
-            var dataContext = new CatalystProblemDataContext();
-            var people = dataContext.People.ToList();
-            return people;
+            _repository = repository;
+        }
+        // GET api/values
+        public List<Person> Get(string searchParam)
+        {
+            var peopleFound = string.IsNullOrEmpty(searchParam) ? _repository.GetAllPeople() : _repository.SearchForPeople(searchParam);
+            return peopleFound;
         }
 
         // GET api/values/5

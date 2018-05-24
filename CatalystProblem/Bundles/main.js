@@ -94,9 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _people_people_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./people/people.component */ "./src/app/people/people.component.ts");
-/* harmony import */ var _messages_messages_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./messages/messages.component */ "./src/app/messages/messages.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _people_people_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./people/people.component */ "./src/app/people/people.component.ts");
+/* harmony import */ var _messages_messages_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./messages/messages.component */ "./src/app/messages/messages.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -109,22 +110,24 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                _people_people_component__WEBPACK_IMPORTED_MODULE_4__["PeopleComponent"],
-                _messages_messages_component__WEBPACK_IMPORTED_MODULE_5__["MessagesComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _people_people_component__WEBPACK_IMPORTED_MODULE_5__["PeopleComponent"],
+                _messages_messages_component__WEBPACK_IMPORTED_MODULE_6__["MessagesComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -258,7 +261,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Search Results</h2>\n<h4 *ngIf=\"people.length <= 0\">\n  No one found with that name.\n</h4>\n\n<table class=\"table\" *ngIf=\"people.length > 0\">\n  <thead>\n    <tr>\n      <th>Avatar</th>\n      <th>Name</th>\n      <th>Address</th>\n      <th>Age</th>\n      <th>Interests</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr  *ngFor=\"let person of people\">\n      <td>\n        <img style=\"width:50px;\" src=\"Content/images/{{person.avatarUrl}}\" title=\"{{person.name}}'s avatar\" />\n      </td>\n      <td>{{person.name}}</td>\n      <td>{{person.address}}</td>\n      <td>{{person.age}}</td>\n      <td>{{person.interests}}</td>\n    </tr>\n  </tbody>\n</table>\n"
+module.exports = "<h3>Search People</h3>\n\n<form>\n  <div class=\"form-group\">\n    <label for=\"searchParam\">Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"searchParam\"\n    [(ngModel)]=\"searchParam\" name=\"searchParam\"\n    #name=\"ngModel\"\n    required />\n  </div>\n  <button type=\"submit\" class=\"btn btn-success\" (click)=\"getPeople()\">\n    Search\n  </button>\n</form>\n\n<h4 *ngIf=\"people && people.length <= 0\">\n  No one found with that name.\n</h4>\n\n<table class=\"table\" *ngIf=\"people && people.length > 0\">\n  <thead>\n    <tr>\n      <th>Avatar</th>\n      <th>Name</th>\n      <th>Address</th>\n      <th>Age</th>\n      <th>Interests</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr  *ngFor=\"let person of people\">\n      <td>\n        <img style=\"width:50px;\" src=\"Content/images/{{person.avatarUrl}}\" title=\"{{person.name}}'s avatar\" />\n      </td>\n      <td>{{person.name}}</td>\n      <td>{{person.address}}</td>\n      <td>{{person.age}}</td>\n      <td>{{person.interests}}</td>\n    </tr>\n  </tbody>\n</table>\n"
 
 /***/ }),
 
@@ -291,7 +294,7 @@ var PeopleComponent = /** @class */ (function () {
     }
     PeopleComponent.prototype.getPeople = function () {
         var _this = this;
-        this.personService.getPeople()
+        this.personService.getPeople(this.searchParam)
             .subscribe(function (people) { return _this.people = people; });
     };
     PeopleComponent.prototype.ngOnInit = function () {
@@ -324,7 +327,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonService", function() { return PersonService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _message_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./message.service */ "./src/app/message.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _message_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./message.service */ "./src/app/message.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -337,15 +342,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var PersonService = /** @class */ (function () {
     function PersonService(http, messageService) {
         this.http = http;
         this.messageService = messageService;
         this.personUrl = 'api/people';
     }
-    PersonService.prototype.getPeople = function () {
-        this.messageService.add('Searched People...');
-        return this.http.get(this.personUrl);
+    PersonService.prototype.getPeople = function (searchParam) {
+        var _this = this;
+        var url = this.personUrl + "?searchParam=" + searchParam;
+        return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return _this.log("searched for " + searchParam); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('getPeople', [])));
+    };
+    PersonService.prototype.handleError = function (operation, result) {
+        var _this = this;
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            console.error(error);
+            _this.log(operation + " failed: " + error.message);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(result);
+        };
     };
     PersonService.prototype.log = function (message) {
         this.messageService.add('PersonService: ' + message);
@@ -354,7 +371,7 @@ var PersonService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _message_service__WEBPACK_IMPORTED_MODULE_2__["MessageService"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _message_service__WEBPACK_IMPORTED_MODULE_4__["MessageService"]])
     ], PersonService);
     return PersonService;
 }());

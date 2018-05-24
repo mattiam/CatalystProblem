@@ -9,10 +9,11 @@ import { Person } from '../Person';
 })
 export class PeopleComponent implements OnInit {
   people: Person[];
+  searchParam: string;
   constructor(private personService: PersonService) {
   }
   getPeople(): void {
-    this.personService.getPeople()
+    this.personService.getPeople(this.searchParam)
       .subscribe(people => this.people = people);
   }
 
