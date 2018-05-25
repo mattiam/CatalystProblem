@@ -1,19 +1,18 @@
-using CatalystProblem.Data;
+using System;
+using System.Web;
+using CatalystProblem;
+using CatalystProblem.Business;
+using CatalystProblem.Models;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CatalystProblem.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CatalystProblem.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace CatalystProblem.App_Start
+namespace CatalystProblem
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -65,7 +64,8 @@ namespace CatalystProblem.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ICatalystProblemRepository>().To<CatalystProblemRepository>();
+            kernel.Bind<ICatalystProblemBusinessLogic>().To<CatalystProblemBusinessLogic>();
+            kernel.Bind<ICatalystProblemDataContext>().To<CatalystProblemDataContext>();
         }        
     }
 }
