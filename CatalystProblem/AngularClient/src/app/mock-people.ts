@@ -3,7 +3,8 @@ import { Person } from './person';
 export const PEOPLE: Person[] = [
     {
         personId: 1,
-        name: 'Yoda',
+        firstName: 'Minch',
+        lastName: 'Yoda',
         address: 'Jungle Planet, Dagobah System',
         age: 900,
         interests: 'training Luke, defeating Sith, wielding green lightsabers',
@@ -11,7 +12,8 @@ export const PEOPLE: Person[] = [
     },
     {
         personId: 2,
-        name: 'Luke Skywalker',
+        firstName: 'Luke',
+        lastName: 'Skywalker',
         address: 'Tatooine, Galaxy far, far away',
         age: 19,
         interests: 'turning Sith good, wielding blue lightsabers',

@@ -27,7 +27,7 @@ namespace CatalystProblem.Data
 
         public List<Person> SearchForPeople(string searchParam)
         {
-            return _context.People.Where(x => x.Name.Contains(searchParam)).ToList();
+            return _context.People.Where(x => x.FirstName.Contains(searchParam) || x.LastName.Contains(searchParam)).ToList();
         }
     }
 }

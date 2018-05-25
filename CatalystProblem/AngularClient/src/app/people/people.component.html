@@ -15,7 +15,8 @@
 </form>
 
 <h4 *ngIf="searching">
-  Currently searching for...{{searchParam}}
+  Currently searching... we've been searching for {{searchTime}} seconds
+  <span *ngIf="searchTime > 3"><br />Maybe you should get some coffee, this is taking longer than expected...</span>
 </h4>
 
 <h4 *ngIf="!searching && people.length <= 0">
@@ -37,7 +38,7 @@
       <td>
         <img style="width:50px;" src="Content/images/{{person.avatarUrl}}" title="{{person.name}}'s avatar" />
       </td>
-      <td>{{person.name}}</td>
+      <td>{{person.lastName}}, {{person.firstName}}</td>
       <td>{{person.address}}</td>
       <td>{{person.age}}</td>
       <td>{{person.interests}}</td>

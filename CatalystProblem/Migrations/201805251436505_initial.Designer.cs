@@ -13,7 +13,7 @@ namespace CatalystProblem.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201805241609525_initial"; }
+            get { return "201805251436505_initial"; }
         }
         
         string IMigrationMetadata.Source

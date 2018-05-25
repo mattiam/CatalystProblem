@@ -2,7 +2,8 @@
 export class Person {
 
     personId: number;
-    name: string;
+    firstName: string;
+    lastName: string;
     address: string;
     age: number;
     interests: string;

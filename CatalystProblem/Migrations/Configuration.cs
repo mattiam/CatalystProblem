@@ -9,16 +9,18 @@ namespace CatalystProblem.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(CatalystProblemDataContext context)
         {
+
             context.People.AddOrUpdate(x => x.PersonId,
                 new Person
                 {
                     PersonId = 1,
-                    Name = "Yoda",
+                    FirstName = "Minch",
+                    LastName = "Yoda",
                     Address = "Jungle Planet, Dagobah System",
                     Age = 900,
                     Interests = "training Luke, defeating Sith, wielding green lightsabers",
@@ -28,7 +30,8 @@ namespace CatalystProblem.Migrations
                 new Person
                 {
                     PersonId = 1,
-                    Name = "Luke Skywalker",
+                    FirstName = "Luke",
+                    LastName = "Skywalker",
                     Address = "Tatooine, Galaxy far, far away",
                     Age = 19,
                     Interests = "turning Sith good, wielding blue lightsabers",

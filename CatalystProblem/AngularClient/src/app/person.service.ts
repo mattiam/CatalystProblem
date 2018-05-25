@@ -19,7 +19,7 @@ export class PersonService {
     const url = `${this.personUrl}?searchParam=${searchParam}`;
 
     return this.http.get<Person[]>(url).pipe(
-      tap(_ => this.log(`searched for ${searchParam}`)),
+      tap(_ => this.log(`searched for '${searchParam}'`)),
       catchError(this.handleError('getPeople', []))
     );
   }
@@ -31,6 +31,6 @@ export class PersonService {
     };
   }
   private log(message: string) {
-    this.messageService.add('PersonService: ' + message);
+    this.messageService.add(message);
   }
 }

@@ -195,7 +195,7 @@ module.exports = "/* MessagesComponent's private CSS styles */\r\nh2 {\r\n    co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"messageService.messages.length\">\n\n    <h2>Messages</h2>\n    <button class=\"clear\"\n            (click)=\"messageService.clear()\">clear</button>\n    <div *ngFor='let message of messageService.messages'> {{message}} </div>\n  </div>"
+module.exports = "<div *ngIf=\"messageService.messages.length\">\n\n    <h2>Search History</h2>\n    <button class=\"clear\"\n            (click)=\"messageService.clear()\">clear</button>\n    <div *ngFor='let message of messageService.messages'> {{message}} </div>\n  </div>"
 
 /***/ }),
 
@@ -261,7 +261,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Search People</h3>\n\n<form>\n  <div class=\"form-group\">\n    <label for=\"searchParam\">Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"searchParam\"\n    [(ngModel)]=\"searchParam\" name=\"searchParam\"\n    #name=\"ngModel\"\n    required />\n  </div>\n  <button type=\"submit\" class=\"btn btn-success\" (click)=\"getPeople()\">\n    Search\n  </button>\n</form>\n\n<h4 *ngIf=\"searching\">\n  Currently searching for...{{searchParam}}\n</h4>\n\n<h4 *ngIf=\"!searching && people.length <= 0\">\n  No one found with that name.\n</h4>\n\n<table class=\"table\" *ngIf=\"people && people.length > 0\">\n  <thead>\n    <tr>\n      <th>Avatar</th>\n      <th>Name</th>\n      <th>Address</th>\n      <th>Age</th>\n      <th>Interests</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr  *ngFor=\"let person of people\">\n      <td>\n        <img style=\"width:50px;\" src=\"Content/images/{{person.avatarUrl}}\" title=\"{{person.name}}'s avatar\" />\n      </td>\n      <td>{{person.name}}</td>\n      <td>{{person.address}}</td>\n      <td>{{person.age}}</td>\n      <td>{{person.interests}}</td>\n    </tr>\n  </tbody>\n</table>\n"
+module.exports = "<h3>Search People</h3>\n\n<form>\n  <div class=\"form-group\">\n    <label for=\"searchParam\">Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"searchParam\"\n    [(ngModel)]=\"searchParam\" name=\"searchParam\"\n    #name=\"ngModel\"\n    required />\n  </div>\n  <br/>\n  <button type=\"submit\" class=\"btn btn-success\" (click)=\"getPeople()\">\n    Search\n  </button>\n</form>\n\n<h4 *ngIf=\"searching\">\n  Currently searching... we've been searching for {{searchTime}} seconds\n  <span *ngIf=\"searchTime > 3\"><br />Maybe you should get some coffee, this is taking longer than expected...</span>\n</h4>\n\n<h4 *ngIf=\"!searching && people.length <= 0\">\n  No one found with that name.\n</h4>\n\n<table class=\"table\" *ngIf=\"people && people.length > 0\">\n  <thead>\n    <tr>\n      <th>Avatar</th>\n      <th>Name</th>\n      <th>Address</th>\n      <th>Age</th>\n      <th>Interests</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr  *ngFor=\"let person of people\">\n      <td>\n        <img style=\"width:50px;\" src=\"Content/images/{{person.avatarUrl}}\" title=\"{{person.name}}'s avatar\" />\n      </td>\n      <td>{{person.lastName}}, {{person.firstName}}</td>\n      <td>{{person.address}}</td>\n      <td>{{person.age}}</td>\n      <td>{{person.interests}}</td>\n    </tr>\n  </tbody>\n</table>"
 
 /***/ }),
 
@@ -277,6 +277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeopleComponent", function() { return PeopleComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _person_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../person.service */ "./src/app/person.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -288,6 +289,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var PeopleComponent = /** @class */ (function () {
     function PeopleComponent(personService) {
         this.personService = personService;
@@ -296,13 +298,24 @@ var PeopleComponent = /** @class */ (function () {
         var _this = this;
         this.people = [];
         this.searching = true;
-        this.personService.getPeople(this.searchParam)
-            .subscribe(function (people) { return _this.people = people; }, function (error) { return console.log('Error: ', error); }, function () { return _this.searching = false; });
+        var subscription = this.personService.getPeople(this.searchParam)
+            .subscribe(function (people) { return _this.populatePeople(people); }, function (error) { return console.log('Error: ', error); }, function () { return _this.finishedPopulatingPeople(); });
+        var source = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["interval"])(1000);
+        this.timerSubscription = source.subscribe(function (t) { return _this.searchTime = t; });
+    };
+    PeopleComponent.prototype.populatePeople = function (people) {
+        this.people = people;
+    };
+    PeopleComponent.prototype.finishedPopulatingPeople = function () {
+        this.searching = false;
+        this.searchTime = 0;
+        this.timerSubscription.unsubscribe();
     };
     PeopleComponent.prototype.ngOnInit = function () {
         this.searchParam = '';
         this.people = [];
         this.searching = false;
+        this.searchTime = 0;
         this.getPeople();
     };
     PeopleComponent = __decorate([
@@ -358,7 +371,7 @@ var PersonService = /** @class */ (function () {
     PersonService.prototype.getPeople = function (searchParam) {
         var _this = this;
         var url = this.personUrl + "?searchParam=" + searchParam;
-        return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return _this.log("searched for " + searchParam); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('getPeople', [])));
+        return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return _this.log("searched for '" + searchParam + "'"); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('getPeople', [])));
     };
     PersonService.prototype.handleError = function (operation, result) {
         var _this = this;
@@ -370,7 +383,7 @@ var PersonService = /** @class */ (function () {
         };
     };
     PersonService.prototype.log = function (message) {
-        this.messageService.add('PersonService: ' + message);
+        this.messageService.add(message);
     };
     PersonService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

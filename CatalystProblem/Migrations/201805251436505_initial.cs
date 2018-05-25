@@ -12,7 +12,8 @@ namespace CatalystProblem.Migrations
                 c => new
                     {
                         PersonId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(nullable: false),
                         Address = c.String(nullable: false),
                         Age = c.Int(nullable: false),
                         Interests = c.String(),
