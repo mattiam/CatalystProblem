@@ -8,12 +8,17 @@
     #name="ngModel"
     required />
   </div>
+  <br/>
   <button type="submit" class="btn btn-success" (click)="getPeople()">
     Search
   </button>
 </form>
 
-<h4 *ngIf="people && people.length <= 0">
+<h4 *ngIf="searching">
+  Currently searching for...{{searchParam}}
+</h4>
+
+<h4 *ngIf="!searching && people.length <= 0">
   No one found with that name.
 </h4>
 
