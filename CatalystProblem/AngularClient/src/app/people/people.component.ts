@@ -11,6 +11,7 @@ import { takeUntil, switchMap } from 'rxjs/operators';
 })
 export class PeopleComponent implements OnInit {
   people: Person[];
+  selectedPerson: Person;
   searchParam: string;
   searching: boolean;
   searchTime: number;
@@ -41,6 +42,28 @@ export class PeopleComponent implements OnInit {
     this.searching = false;
     this.searchTime = 0;
     this.timerSubscription.unsubscribe();
+  }
+
+  selectPerson(person: Person): void {
+    this.selectedPerson = person;
+  }
+  deselectPerson(): void {
+    this.selectedPerson = undefined;
+  }
+  editPerson(): void {
+    const subscription = this.personService.editPerson(this.selectedPerson)
+      .subscribe(() => this.finishEditingPerson());
+  }
+  finishEditingPerson(): void {
+      const subscription = this.personService.getPerson(this.selectedPerson.personId)
+        .subscribe(p => this.selectedPerson = p);
+  }
+
+  deletePerson(personId: number): void {
+    const subscription = this.personService.deletePerson(personId)
+      .subscribe(
+        () => this.getPeople()
+      );
   }
 
   ngOnInit() {

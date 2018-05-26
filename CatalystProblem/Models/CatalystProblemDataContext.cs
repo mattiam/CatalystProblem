@@ -7,7 +7,7 @@ using System.Web;
 namespace CatalystProblem.Models
 {
 
-    public class CatalystProblemDataContext : DbContext, ICatalystProblemDataContext
+    public class CatalystProblemDataContext : DbContext
     {
         public CatalystProblemDataContext() : base("name=CatalystProblemDataContext")
         {

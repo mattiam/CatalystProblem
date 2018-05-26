@@ -86,6 +86,15 @@ namespace CatalystProblem.Tests
         }
 
         [Test]
+        public void WHEN_EmptySearch_THEN_ReturnsAllPeople()
+        {
+            ICatalystProblemBusinessLogic businessLogic = new CatalystProblemBusinessLogic(_context.Object);
+
+            var results = businessLogic.SearchForPeople("");
+            Assert.AreEqual(3, results.Count);
+        }
+
+        [Test]
         public void WHEN_FullPersonFound_THEN_ReturnsEverything()
         {
 

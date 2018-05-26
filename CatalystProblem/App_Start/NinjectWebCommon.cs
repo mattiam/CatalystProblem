@@ -65,7 +65,7 @@ namespace CatalystProblem
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ICatalystProblemBusinessLogic>().To<CatalystProblemBusinessLogic>();
-            kernel.Bind<ICatalystProblemDataContext>().To<CatalystProblemDataContext>();
+            kernel.Bind<ICatalystProblemDataContext>().To<CatalystProblemDataAdapter>();
         }        
     }
 }

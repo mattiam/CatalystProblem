@@ -17,7 +17,11 @@ namespace CatalystProblem
                         "~/Bundles/main.*"
                     ));
 
-            bundles.Add(new StyleBundle("~/Content/Styles").Include("~/Bundles/styles.*"));
+            bundles.Add(new StyleBundle("~/Content/Styles")
+                .Include(
+                    "~/Bundles/styles.*", 
+                    "~/Content/bootstrap.min.css",
+                    "~/Content/Site.css"));
         }
     }
 }

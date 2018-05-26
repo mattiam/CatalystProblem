@@ -23,6 +23,27 @@ export class PersonService {
       catchError(this.handleError('getPeople', []))
     );
   }
+  getPerson(personId: number): Observable<Person> {
+    const url = `${this.personUrl}/${personId}`;
+
+    return this.http.get<Person>(url).pipe(
+      tap(_ => this.log(`getting person with id '${personId}'`))
+    );
+  }
+
+  editPerson(person: Person): any {
+    const url = `${this.personUrl}/${person.personId}`;
+
+    return this.http.put(url, person).pipe(
+      tap(_ => this.log(`editing person with id '${person.personId}'`)));
+  }
+
+  deletePerson(personId: number): any {
+    const url = `${this.personUrl}/${personId}`;
+    return this.http.delete(url).pipe(
+      tap(_ => this.log(`deleting person with id '${personId}'`)));
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

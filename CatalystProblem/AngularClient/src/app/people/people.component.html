@@ -1,14 +1,11 @@
-<h3>Search People</h3>
-
 <form>
   <div class="form-group">
-    <label for="searchParam">Name</label>
+    <label for="searchParam">Search People By Name</label>
     <input type="text" class="form-control" id="searchParam"
     [(ngModel)]="searchParam" name="searchParam"
     #name="ngModel"
     required />
   </div>
-  <br/>
   <button type="submit" class="btn btn-success" (click)="getPeople()">
     Search
   </button>
@@ -16,7 +13,7 @@
 
 <h4 *ngIf="searching">
   Currently searching... we've been searching for {{searchTime}} seconds
-  <span *ngIf="searchTime > 3"><br />Maybe you should get some coffee, this is taking longer than expected...</span>
+  <span *ngIf="searchTime > 3"><br />Maybe you should get a drink.  This is taking longer than expected...</span>
 </h4>
 
 <h4 *ngIf="!searching && people.length <= 0">
@@ -26,22 +23,77 @@
 <table class="table" *ngIf="people && people.length > 0">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Avatar</th>
       <th>Name</th>
       <th>Address</th>
       <th>Age</th>
       <th>Interests</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr  *ngFor="let person of people">
+      <td>{{person.personId}}</td>
       <td>
-        <img style="width:50px;" src="Content/images/{{person.avatarUrl}}" title="{{person.name}}'s avatar" />
+        <img style="width:50px;" src="Content/images/{{person.avatarUrl}}" title="{{person.firstName}}'s avatar" />
       </td>
       <td>{{person.lastName}}, {{person.firstName}}</td>
       <td>{{person.address}}</td>
       <td>{{person.age}}</td>
       <td>{{person.interests}}</td>
+      <td>
+        <span class="glyphicon glyphicon-edit" [class.selectedPerson]="person === selectedPerson" (click)="selectPerson(person)"></span>
+        <span class="glyphicon glyphicon-remove-sign" (click)="deletePerson(person.personId)"></span>
+      </td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="selectedPerson">
+<h4>Edit {{selectedPerson.firstName}} <span class="	glyphicon glyphicon-remove-circle" (click)="deselectPerson()"></span></h4>
+
+    <form #personForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text"
+        class="form-control"
+        id="firstName"
+        required
+        [(ngModel)]="selectedPerson.firstName" name="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text"
+        class="form-control"
+        id="lastName"
+        required
+        [(ngModel)]="selectedPerson.lastName" name="lastName">
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text"
+        class="form-control"
+        id="address"
+        required
+        [(ngModel)]="selectedPerson.address" name="address">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number"
+        class="form-control"
+        id="age"
+        required
+        [(ngModel)]="selectedPerson.age" name="age">
+      </div>
+      <div class="form-group">
+        <label for="interests">Interests</label>
+        <textarea class="form-control"
+        cols="40"
+        rows="5"
+        id="interests"
+        [(ngModel)]="selectedPerson.interests" name="interests"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success" (click)="editPerson()">Submit Change</button>
+    </form>
+  </div>

@@ -17,30 +17,31 @@ namespace CatalystProblem.Controllers
         {
             _businessLogic = businessLogic;
         }
-        // GET api/values
+        // GET api/people
         public List<Person> Get(string searchParam)
         {
             var peopleFound = string.IsNullOrEmpty(searchParam) ? _businessLogic.GetAllPeople() : _businessLogic.SearchForPeople(searchParam);
             return peopleFound;
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        // GET api/people/5
+        public Person Get(int id)
         {
-            return "value";
+            return _businessLogic.GetPerson(id);
         }
 
-        // POST api/values
+        // POST api/people
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        // PUT api/people/5
+        public void Put(int id, [FromBody]Person person)
         {
+            _businessLogic.UpdatePerson(person);
         }
 
-        // DELETE api/values/5
+        // DELETE api/people/5
         public void Delete(int id)
         {
         }

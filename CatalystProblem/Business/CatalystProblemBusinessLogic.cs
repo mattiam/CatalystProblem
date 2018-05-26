@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using CatalystProblem.Models;
 
@@ -20,6 +22,21 @@ namespace CatalystProblem.Business
         {
             searchParam = searchParam.ToLower();
             return _context.People.Where(x => x.FirstName.ToLower().Contains(searchParam) || x.LastName.ToLower().Contains(searchParam)).ToList();
+        }
+
+        public void UpdatePerson(Person person)
+        {
+            var result = _context.People.FirstOrDefault(x => x.PersonId == person.PersonId);
+            if (result != null)
+            {
+                _context.Entry(result).CurrentValues.SetValues(person);
+                _context.SaveChanges();
+            }
+        }
+
+        public Person GetPerson(int id)
+        {
+            return _context.People.FirstOrDefault(x => x.PersonId == id);
         }
     }
 }

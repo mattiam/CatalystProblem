@@ -7,5 +7,7 @@ namespace CatalystProblem.Business
     {
         List<Person> GetAllPeople();
         List<Person> SearchForPeople(string searchParam);
+        void UpdatePerson(Person person);
+        Person GetPerson(int id);
     }
 }
