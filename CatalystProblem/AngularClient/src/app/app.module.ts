@@ -6,14 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
 import { MessagesComponent } from './messages/messages.component';
-import { PersonFormComponent } from './person-form/person-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
-    MessagesComponent,
-    PersonFormComponent
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

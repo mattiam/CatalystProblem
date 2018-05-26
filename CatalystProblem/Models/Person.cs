@@ -18,5 +18,8 @@ namespace CatalystProblem.Models
         public string Interests { get; set; }
         public string AvatarUrl { get; set; }
         public DateTime InsertDate { get; set; }
+
+        public bool IsValid => !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) &&
+                               !string.IsNullOrEmpty(Address) && Age > 0;
     }
 }

@@ -9,5 +9,7 @@ namespace CatalystProblem.Business
         List<Person> SearchForPeople(string searchParam);
         void UpdatePerson(Person person);
         Person GetPerson(int id);
+        int AddPerson(Person person);
+        void DeletePerson(int id);
     }
 }

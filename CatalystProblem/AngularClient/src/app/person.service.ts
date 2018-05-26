@@ -38,6 +38,13 @@ export class PersonService {
       tap(_ => this.log(`editing person with id '${person.personId}'`)));
   }
 
+  addPerson(person: Person): Observable<number> {
+    const url = `${this.personUrl}`;
+
+    return this.http.post<number>(url, person).pipe(
+      tap(_ => this.log(`adding person`)));
+  }
+
   deletePerson(personId: number): any {
     const url = `${this.personUrl}/${personId}`;
     return this.http.delete(url).pipe(

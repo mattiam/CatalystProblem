@@ -24,7 +24,7 @@ namespace CatalystProblem.Migrations
                     Address = "Jungle Planet, Dagobah System",
                     Age = 900,
                     Interests = "training Luke, defeating Sith, wielding green lightsabers",
-                    AvatarUrl = "Yoda.png",
+                    AvatarUrl = "https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png",
                     InsertDate = DateTime.Now
                 },
                 new Person
@@ -35,7 +35,7 @@ namespace CatalystProblem.Migrations
                     Address = "Tatooine, Galaxy far, far away",
                     Age = 19,
                     Interests = "turning Sith good, wielding blue lightsabers",
-                    AvatarUrl = "luke.jpg",
+                    AvatarUrl = "https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png",
                     InsertDate = DateTime.Now
                 }
             );

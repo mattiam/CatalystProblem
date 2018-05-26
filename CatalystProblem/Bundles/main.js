@@ -23,6 +23,26 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/Person.ts":
+/*!***************************!*\
+  !*** ./src/app/Person.ts ***!
+  \***************************/
+/*! exports provided: Person */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Person", function() { return Person; });
+var Person = /** @class */ (function () {
+    function Person() {
+    }
+    return Person;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.component.css":
 /*!***********************************!*\
   !*** ./src/app/app.component.css ***!
@@ -41,7 +61,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{title}}</h1> \n\n<app-people></app-people>\n<app-messages></app-messages>\n"
+module.exports = "<h1>{{title}}</h1> \n\n<app-people></app-people>\n\n"
 
 /***/ }),
 
@@ -98,14 +118,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _people_people_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./people/people.component */ "./src/app/people/people.component.ts");
 /* harmony import */ var _messages_messages_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./messages/messages.component */ "./src/app/messages/messages.component.ts");
-/* harmony import */ var _person_form_person_form_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./person-form/person-form.component */ "./src/app/person-form/person-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -121,8 +139,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
                 _people_people_component__WEBPACK_IMPORTED_MODULE_5__["PeopleComponent"],
-                _messages_messages_component__WEBPACK_IMPORTED_MODULE_6__["MessagesComponent"],
-                _person_form_person_form_component__WEBPACK_IMPORTED_MODULE_7__["PersonFormComponent"]
+                _messages_messages_component__WEBPACK_IMPORTED_MODULE_6__["MessagesComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -187,7 +204,7 @@ var MessageService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* MessagesComponent's private CSS styles */\r\nh2 {\r\n    color: red;\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-weight: lighter;\r\n  }\r\nbody {\r\n    margin: 2em;\r\n  }\r\nbody, input[text], button {\r\n    color: crimson;\r\n    font-family: Cambria, Georgia;\r\n  }\r\nbutton.clear {\r\n    font-family: Arial;\r\n    background-color: #eee;\r\n    border: none;\r\n    padding: 5px 10px;\r\n    border-radius: 4px;\r\n    cursor: pointer;\r\n    cursor: hand;\r\n  }\r\nbutton:hover {\r\n    background-color: #cfd8dc;\r\n  }\r\nbutton:disabled {\r\n    background-color: #eee;\r\n    color: #aaa;\r\n    cursor: auto;\r\n  }\r\nbutton.clear {\r\n    color: #888;\r\n    margin-bottom: 12px;\r\n  }"
+module.exports = "/* MessagesComponent's private CSS styles */\nh2 {\n    color: red;\n    font-family: Arial, Helvetica, sans-serif;\n    font-weight: lighter;\n  }\nbody {\n    margin: 2em;\n  }\nbody, input[text], button {\n    color: crimson;\n    font-family: Cambria, Georgia;\n  }\nbutton.clear {\n    font-family: Arial;\n    background-color: #eee;\n    border: none;\n    padding: 5px 10px;\n    border-radius: 4px;\n    cursor: pointer;\n    cursor: hand;\n  }\nbutton:hover {\n    background-color: #cfd8dc;\n  }\nbutton:disabled {\n    background-color: #eee;\n    color: #aaa;\n    cursor: auto;\n  }\nbutton.clear {\n    color: #888;\n    margin-bottom: 12px;\n  }"
 
 /***/ }),
 
@@ -198,7 +215,7 @@ module.exports = "/* MessagesComponent's private CSS styles */\r\nh2 {\r\n    co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"messageService.messages.length\">\n\n    <h2>Search History</h2>\n    <button class=\"clear\"\n            (click)=\"messageService.clear()\">clear</button>\n    <div *ngFor='let message of messageService.messages'> {{message}} </div>\n  </div>"
+module.exports = "<div *ngIf=\"messageService.messages.length\">\n\n    <h2>Log</h2>\n    <button class=\"clear\"\n            (click)=\"messageService.clear()\">clear</button>\n    <div *ngFor='let message of messageService.messages'> {{message}} </div>\n  </div>"
 
 /***/ }),
 
@@ -253,7 +270,7 @@ var MessagesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "form {\r\n    padding-bottom: 20px;\r\n}"
+module.exports = "form {\n    padding-bottom: 20px;\n}\n\n.hand {\n    cursor: pointer;\n}\n\n.errorBorder {\n    border:2px solid red;\n}\n\n.avatar {\n    max-width:50px;\n    max-height:75px;\n}"
 
 /***/ }),
 
@@ -264,7 +281,7 @@ module.exports = "form {\r\n    padding-bottom: 20px;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <div class=\"form-group\">\n    <label for=\"searchParam\">Search People By Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"searchParam\"\n    [(ngModel)]=\"searchParam\" name=\"searchParam\"\n    #name=\"ngModel\"\n    required />\n  </div>\n  <button type=\"submit\" class=\"btn btn-success\" (click)=\"getPeople()\">\n    Search\n  </button>\n</form>\n\n<h4 *ngIf=\"searching\">\n  Currently searching... we've been searching for {{searchTime}} seconds\n  <span *ngIf=\"searchTime > 3\"><br />Maybe you should get a drink.  This is taking longer than expected...</span>\n</h4>\n\n<h4 *ngIf=\"!searching && people.length <= 0\">\n  No one found with that name.\n</h4>\n\n<table class=\"table\" *ngIf=\"people && people.length > 0\">\n  <thead>\n    <tr>\n      <th>Id</th>\n      <th>Avatar</th>\n      <th>Name</th>\n      <th>Address</th>\n      <th>Age</th>\n      <th>Interests</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr  *ngFor=\"let person of people\">\n      <td>{{person.personId}}</td>\n      <td>\n        <img style=\"width:50px;\" src=\"Content/images/{{person.avatarUrl}}\" title=\"{{person.firstName}}'s avatar\" />\n      </td>\n      <td>{{person.lastName}}, {{person.firstName}}</td>\n      <td>{{person.address}}</td>\n      <td>{{person.age}}</td>\n      <td>{{person.interests}}</td>\n      <td>\n        <span class=\"glyphicon glyphicon-edit\" [class.selectedPerson]=\"person === selectedPerson\" (click)=\"selectPerson(person)\"></span>\n        <span class=\"glyphicon glyphicon-remove-sign\" (click)=\"deletePerson(person.personId)\"></span>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div *ngIf=\"selectedPerson\">\n<h4>Edit {{selectedPerson.firstName}} <span class=\"\tglyphicon glyphicon-remove-circle\" (click)=\"deselectPerson()\"></span></h4>\n\n    <form #personForm=\"ngForm\">\n      <div class=\"form-group\">\n        <label for=\"firstName\">First Name</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"firstName\"\n        required\n        [(ngModel)]=\"selectedPerson.firstName\" name=\"firstName\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"lastName\">Last Name</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"lastName\"\n        required\n        [(ngModel)]=\"selectedPerson.lastName\" name=\"lastName\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"address\">Address</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"address\"\n        required\n        [(ngModel)]=\"selectedPerson.address\" name=\"address\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"age\">Age</label>\n        <input type=\"number\"\n        class=\"form-control\"\n        id=\"age\"\n        required\n        [(ngModel)]=\"selectedPerson.age\" name=\"age\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"interests\">Interests</label>\n        <textarea class=\"form-control\"\n        cols=\"40\"\n        rows=\"5\"\n        id=\"interests\"\n        [(ngModel)]=\"selectedPerson.interests\" name=\"interests\"></textarea>\n      </div>\n      <button type=\"submit\" class=\"btn btn-success\" (click)=\"editPerson()\">Submit Change</button>\n    </form>\n  </div>"
+module.exports = "<form>\n  <div class=\"form-group\">\n    <label for=\"searchParam\">Search People By Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"searchParam\"\n    [(ngModel)]=\"searchParam\" name=\"searchParam\"\n    #name=\"ngModel\"\n    required />\n  </div>\n  <button type=\"submit\" class=\"btn btn-success\" (click)=\"getPeople()\">\n    Search\n  </button> | \n  <button class=\"btn btn-success\" (click)=\"displayNewPerson()\">\n    Add Person\n  </button>\n</form>\n\n<h4 *ngIf=\"searching\">\n  Currently searching... we've been searching for {{searchTime}} seconds\n  <span *ngIf=\"searchTime > 3\"><br />Maybe you should get a drink.  This is taking longer than expected...</span>\n</h4>\n\n<h4 *ngIf=\"!searching && people.length <= 0\">\n  No one found with that name.\n</h4>\n\n<table class=\"table\" *ngIf=\"people && people.length > 0\">\n  <thead>\n    <tr>\n      <th>Avatar</th>\n      <th>Name</th>\n      <th>Address</th>\n      <th>Age</th>\n      <th>Interests</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr  *ngFor=\"let person of people\">\n      <td>\n        <img class=\"avatar\" [src]=\"person.avatarUrl\" onError=\"this.src='Content/images/default-avatar.png'\" title=\"{{person.firstName}}'s avatar\" />\n      </td>\n      <td>{{person.lastName}}, {{person.firstName}}</td>\n      <td>{{person.address}}</td>\n      <td>{{person.age}}</td>\n      <td>{{person.interests}}</td>\n      <td>\n        <span class=\"glyphicon glyphicon-edit hand\" [class.selectedPerson]=\"person === selectedPerson\" (click)=\"selectPerson(person)\"></span> | \n        <span class=\"glyphicon glyphicon-remove-sign hand\" (click)=\"deletePerson(person.personId)\"></span>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div *ngIf=\"selectedPerson\">\n<h4>\n  <span *ngIf=\"selectedPerson.personId > 0\">Edit</span> \n  <span *ngIf=\"!selectedPerson.personId\">Add</span>\n  {{selectedPerson.firstName}} <span (click)=\"deselectPerson()\" class=\"btn btn-outline-danger btn-sm\">(close editor)</span>\n</h4>\n\n    <form #personForm=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"firstName\">First Name</label>\n          <input type=\"text\"\n          class=\"form-control\"\n          id=\"firstName\"\n          required minlength=\"1\" \n          [(ngModel)]=\"selectedPerson.firstName\" name=\"firstName\"\n          [ngClass]=\"{'errorBorder': !isValid(selectedPerson.firstName)}\">\n        </div>\n      <div class=\"form-group\">\n        <label for=\"lastName\">Last Name</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"lastName\"\n        required minlength=\"1\" \n        [(ngModel)]=\"selectedPerson.lastName\" name=\"lastName\"\n        [ngClass]=\"{'errorBorder': !isValid(selectedPerson.lastName)}\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"address\">Address</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"address\"\n        required\n        [(ngModel)]=\"selectedPerson.address\" name=\"address\"\n        [ngClass]=\"{'errorBorder': !isValid(selectedPerson.address)}\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"age\">Age</label>\n        <input type=\"number\"\n        class=\"form-control\"\n        id=\"age\"\n        required\n        [(ngModel)]=\"selectedPerson.age\" name=\"age\"\n        [ngClass]=\"{'errorBorder': selectedPerson.age <= 0}\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"interests\">Interests</label>\n        <textarea class=\"form-control\"\n        cols=\"40\"\n        rows=\"5\"\n        id=\"interests\"\n        [(ngModel)]=\"selectedPerson.interests\" name=\"interests\"></textarea>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"avatarUrl\">Avatar Url</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"avatarUrl\"\n        required\n        [(ngModel)]=\"selectedPerson.avatarUrl\" name=\"avatarUrl\">\n      </div>\n      <button type=\"submit\" class=\"btn btn-success\" (click)=\"editPerson()\">Submit Change</button>\n    </form>\n  </div>"
 
 /***/ }),
 
@@ -280,7 +297,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeopleComponent", function() { return PeopleComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _person_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../person.service */ "./src/app/person.service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Person */ "./src/app/Person.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -290,6 +308,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -303,7 +322,7 @@ var PeopleComponent = /** @class */ (function () {
         this.searching = true;
         var subscription = this.personService.getPeople(this.searchParam)
             .subscribe(function (people) { return _this.populatePeople(people); }, function (error) { return console.log('Error: ', error); }, function () { return _this.finishedPopulatingPeople(); });
-        var source = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["interval"])(1000);
+        var source = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["interval"])(1000);
         this.timerSubscription = source.subscribe(function (t) { return _this.searchTime = t; });
     };
     PeopleComponent.prototype.populatePeople = function (people) {
@@ -322,18 +341,32 @@ var PeopleComponent = /** @class */ (function () {
     };
     PeopleComponent.prototype.editPerson = function () {
         var _this = this;
-        var subscription = this.personService.editPerson(this.selectedPerson)
-            .subscribe(function () { return _this.finishEditingPerson(); });
+        if (this.selectedPerson.firstName && this.selectedPerson.lastName && this.selectedPerson.address && this.selectedPerson.age) {
+            if (!this.selectedPerson.personId) {
+                var subscription = this.personService.addPerson(this.selectedPerson)
+                    .subscribe(function (x) { return _this.finishAddingPerson(x); });
+            }
+            else {
+                var subscription = this.personService.editPerson(this.selectedPerson)
+                    .subscribe(function () { return _this.deselectPerson(); });
+            }
+        }
     };
-    PeopleComponent.prototype.finishEditingPerson = function () {
-        var _this = this;
-        var subscription = this.personService.getPerson(this.selectedPerson.personId)
-            .subscribe(function (p) { return _this.selectedPerson = p; });
+    PeopleComponent.prototype.finishAddingPerson = function (personId) {
+        this.selectedPerson.personId = personId;
+        this.people.push(this.selectedPerson);
+        this.deselectPerson();
+    };
+    PeopleComponent.prototype.displayNewPerson = function () {
+        this.selectedPerson = new _Person__WEBPACK_IMPORTED_MODULE_2__["Person"]();
     };
     PeopleComponent.prototype.deletePerson = function (personId) {
         var _this = this;
         var subscription = this.personService.deletePerson(personId)
             .subscribe(function () { return _this.getPeople(); });
+    };
+    PeopleComponent.prototype.isValid = function (str) {
+        return str === undefined || str.length > 0;
     };
     PeopleComponent.prototype.ngOnInit = function () {
         this.searchParam = '';
@@ -351,69 +384,6 @@ var PeopleComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_person_service__WEBPACK_IMPORTED_MODULE_1__["PersonService"]])
     ], PeopleComponent);
     return PeopleComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/person-form/person-form.component.css":
-/*!*******************************************************!*\
-  !*** ./src/app/person-form/person-form.component.css ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/person-form/person-form.component.html":
-/*!********************************************************!*\
-  !*** ./src/app/person-form/person-form.component.html ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h1>Add New Person</h1>\n    <form #personForm=\"ngForm\">\n      <div class=\"form-group\">\n        <label for=\"firstName\">First Name</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"firstName\"\n        required\n        [(ngModel)]=\"model.firstName\" name=\"firstName\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"lastName\">Last Name</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"lastName\"\n        required\n        [(ngModel)]=\"model.lastName\" name=\"lastName\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"address\">Address</label>\n        <input type=\"text\"\n        class=\"form-control\"\n        id=\"address\"\n        required\n        [(ngModel)]=\"model.address\" name=\"address\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"age\">Age</label>\n        <input type=\"number\"\n        class=\"form-control\"\n        id=\"age\"\n        required\n        [(ngModel)]=\"model.age\" name=\"age\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"interests\">Interests</label>\n        <textarea class=\"form-control\"\n        cols=\"40\"\n        rows=\"5\"\n        id=\"interests\"\n        [(ngModel)]=\"model.interests\" name=\"interests\"></textarea>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"avatar\">Avatar</label>\n        <input id=\"avatar\"\n        type=\"file\"\n        accept=\"image/gif, image/jpeg, image/png\">\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-success\">Submit</button>\n    </form>"
-
-/***/ }),
-
-/***/ "./src/app/person-form/person-form.component.ts":
-/*!******************************************************!*\
-  !*** ./src/app/person-form/person-form.component.ts ***!
-  \******************************************************/
-/*! exports provided: PersonFormComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonFormComponent", function() { return PersonFormComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var PersonFormComponent = /** @class */ (function () {
-    function PersonFormComponent() {
-    }
-    PersonFormComponent.prototype.ngOnInit = function () {
-    };
-    PersonFormComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-person-form',
-            template: __webpack_require__(/*! ./person-form.component.html */ "./src/app/person-form/person-form.component.html"),
-            styles: [__webpack_require__(/*! ./person-form.component.css */ "./src/app/person-form/person-form.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], PersonFormComponent);
-    return PersonFormComponent;
 }());
 
 
@@ -469,6 +439,11 @@ var PersonService = /** @class */ (function () {
         var _this = this;
         var url = this.personUrl + "/" + person.personId;
         return this.http.put(url, person).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return _this.log("editing person with id '" + person.personId + "'"); }));
+    };
+    PersonService.prototype.addPerson = function (person) {
+        var _this = this;
+        var url = "" + this.personUrl;
+        return this.http.post(url, person).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return _this.log("adding person"); }));
     };
     PersonService.prototype.deletePerson = function (personId) {
         var _this = this;
@@ -560,7 +535,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\PersonalDev\CatalystProblem\CatalystProblem\AngularClient\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Dev\CatalystProblem\CatalystProblem\AngularClient\src\main.ts */"./src/main.ts");
 
 
 /***/ })

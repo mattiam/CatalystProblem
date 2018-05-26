@@ -31,19 +31,28 @@ namespace CatalystProblem.Controllers
         }
 
         // POST api/people
-        public void Post([FromBody]string value)
+        public int Post([FromBody]Person person)
         {
+            if (person.IsValid)
+            {
+                return _businessLogic.AddPerson(person);
+            }
+            return 0;
         }
 
         // PUT api/people/5
         public void Put(int id, [FromBody]Person person)
         {
-            _businessLogic.UpdatePerson(person);
+            if (person.IsValid)
+            {
+                _businessLogic.UpdatePerson(person);
+            }
         }
 
         // DELETE api/people/5
         public void Delete(int id)
         {
+            _businessLogic.DeletePerson(id);
         }
     }
 }

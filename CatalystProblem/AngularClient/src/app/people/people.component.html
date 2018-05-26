@@ -8,6 +8,9 @@
   </div>
   <button type="submit" class="btn btn-success" (click)="getPeople()">
     Search
+  </button> | 
+  <button class="btn btn-success" (click)="displayNewPerson()">
+    Add Person
   </button>
 </form>
 
@@ -23,7 +26,6 @@
 <table class="table" *ngIf="people && people.length > 0">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Avatar</th>
       <th>Name</th>
       <th>Address</th>
@@ -34,41 +36,46 @@
   </thead>
   <tbody>
     <tr  *ngFor="let person of people">
-      <td>{{person.personId}}</td>
       <td>
-        <img style="width:50px;" src="Content/images/{{person.avatarUrl}}" title="{{person.firstName}}'s avatar" />
+        <img class="avatar" [src]="person.avatarUrl" onError="this.src='Content/images/default-avatar.png'" title="{{person.firstName}}'s avatar" />
       </td>
       <td>{{person.lastName}}, {{person.firstName}}</td>
       <td>{{person.address}}</td>
       <td>{{person.age}}</td>
       <td>{{person.interests}}</td>
       <td>
-        <span class="glyphicon glyphicon-edit" [class.selectedPerson]="person === selectedPerson" (click)="selectPerson(person)"></span>
-        <span class="glyphicon glyphicon-remove-sign" (click)="deletePerson(person.personId)"></span>
+        <span class="glyphicon glyphicon-edit hand" [class.selectedPerson]="person === selectedPerson" (click)="selectPerson(person)"></span> | 
+        <span class="glyphicon glyphicon-remove-sign hand" (click)="deletePerson(person.personId)"></span>
       </td>
     </tr>
   </tbody>
 </table>
 
 <div *ngIf="selectedPerson">
-<h4>Edit {{selectedPerson.firstName}} <span class="	glyphicon glyphicon-remove-circle" (click)="deselectPerson()"></span></h4>
+<h4>
+  <span *ngIf="selectedPerson.personId > 0">Edit</span> 
+  <span *ngIf="!selectedPerson.personId">Add</span>
+  {{selectedPerson.firstName}} <span (click)="deselectPerson()" class="btn btn-outline-danger btn-sm">(close editor)</span>
+</h4>
 
     <form #personForm="ngForm">
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text"
-        class="form-control"
-        id="firstName"
-        required
-        [(ngModel)]="selectedPerson.firstName" name="firstName">
-      </div>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text"
+          class="form-control"
+          id="firstName"
+          required minlength="1" 
+          [(ngModel)]="selectedPerson.firstName" name="firstName"
+          [ngClass]="{'errorBorder': !isValid(selectedPerson.firstName)}">
+        </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
         <input type="text"
         class="form-control"
         id="lastName"
-        required
-        [(ngModel)]="selectedPerson.lastName" name="lastName">
+        required minlength="1" 
+        [(ngModel)]="selectedPerson.lastName" name="lastName"
+        [ngClass]="{'errorBorder': !isValid(selectedPerson.lastName)}">
       </div>
       <div class="form-group">
         <label for="address">Address</label>
@@ -76,7 +83,8 @@
         class="form-control"
         id="address"
         required
-        [(ngModel)]="selectedPerson.address" name="address">
+        [(ngModel)]="selectedPerson.address" name="address"
+        [ngClass]="{'errorBorder': !isValid(selectedPerson.address)}">
       </div>
       <div class="form-group">
         <label for="age">Age</label>
@@ -84,7 +92,8 @@
         class="form-control"
         id="age"
         required
-        [(ngModel)]="selectedPerson.age" name="age">
+        [(ngModel)]="selectedPerson.age" name="age"
+        [ngClass]="{'errorBorder': selectedPerson.age <= 0}">
       </div>
       <div class="form-group">
         <label for="interests">Interests</label>
@@ -93,6 +102,14 @@
         rows="5"
         id="interests"
         [(ngModel)]="selectedPerson.interests" name="interests"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="avatarUrl">Avatar Url</label>
+        <input type="text"
+        class="form-control"
+        id="avatarUrl"
+        required
+        [(ngModel)]="selectedPerson.avatarUrl" name="avatarUrl">
       </div>
       <button type="submit" class="btn btn-success" (click)="editPerson()">Submit Change</button>
     </form>

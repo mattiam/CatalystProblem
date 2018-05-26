@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace CatalystProblem.Business
             var result = _context.People.FirstOrDefault(x => x.PersonId == person.PersonId);
             if (result != null)
             {
+                person.InsertDate = result.InsertDate;
                 _context.Entry(result).CurrentValues.SetValues(person);
                 _context.SaveChanges();
             }
@@ -37,6 +39,21 @@ namespace CatalystProblem.Business
         public Person GetPerson(int id)
         {
             return _context.People.FirstOrDefault(x => x.PersonId == id);
+        }
+
+        public int AddPerson(Person person)
+        {
+            person.InsertDate = DateTime.Now;
+            _context.People.Add(person);
+            _context.SaveChanges();
+            return person.PersonId;
+        }
+
+        public void DeletePerson(int id)
+        {
+            var person = new Person {PersonId = id};
+            _context.Entry(person).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
     }
 }

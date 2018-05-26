@@ -51,12 +51,26 @@ export class PeopleComponent implements OnInit {
     this.selectedPerson = undefined;
   }
   editPerson(): void {
-    const subscription = this.personService.editPerson(this.selectedPerson)
-      .subscribe(() => this.finishEditingPerson());
+    if (this.selectedPerson.firstName && this.selectedPerson.lastName && this.selectedPerson.address && this.selectedPerson.age){
+      if (!this.selectedPerson.personId) {
+        const subscription = this.personService.addPerson(this.selectedPerson)
+          .subscribe(x => this.finishAddingPerson(x));
+      }
+      else {
+        const subscription = this.personService.editPerson(this.selectedPerson)
+          .subscribe(() => this.deselectPerson());
+      }
+    }
   }
-  finishEditingPerson(): void {
-      const subscription = this.personService.getPerson(this.selectedPerson.personId)
-        .subscribe(p => this.selectedPerson = p);
+
+  finishAddingPerson(personId: number): void {
+    this.selectedPerson.personId = personId;
+    this.people.push(this.selectedPerson);
+    this.deselectPerson();
+  }
+
+  displayNewPerson(): void {
+    this.selectedPerson = new Person();
   }
 
   deletePerson(personId: number): void {
@@ -64,6 +78,10 @@ export class PeopleComponent implements OnInit {
       .subscribe(
         () => this.getPeople()
       );
+  }
+
+  isValid(str: string): boolean {
+    return str === undefined || str.length > 0;
   }
 
   ngOnInit() {
