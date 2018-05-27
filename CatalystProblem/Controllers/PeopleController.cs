@@ -17,20 +17,20 @@ namespace CatalystProblem.Controllers
         {
             _businessLogic = businessLogic;
         }
-        // GET api/people
+
         public List<Person> Get(string searchParam)
         {
             var peopleFound = string.IsNullOrEmpty(searchParam) ? _businessLogic.GetAllPeople() : _businessLogic.SearchForPeople(searchParam);
             return peopleFound;
         }
 
-        // GET api/people/5
+
         public Person Get(int id)
         {
             return _businessLogic.GetPerson(id);
         }
 
-        // POST api/people
+
         public int Post([FromBody]Person person)
         {
             if (person.IsValid)
@@ -40,7 +40,7 @@ namespace CatalystProblem.Controllers
             return 0;
         }
 
-        // PUT api/people/5
+
         public void Put(int id, [FromBody]Person person)
         {
             if (person.IsValid)
@@ -49,7 +49,7 @@ namespace CatalystProblem.Controllers
             }
         }
 
-        // DELETE api/people/5
+
         public void Delete(int id)
         {
             _businessLogic.DeletePerson(id);
